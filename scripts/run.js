@@ -1,14 +1,13 @@
 const main = async () => {
-    const fractionalNFT = await hre.ethers.getContractFactory('MyNFT');
-    const fractionalNFTcontract = await fractionalNFT.deploy();
+    const MyNFT = await hre.ethers.getContractFactory('MyNFT');
+    const MyToken = await hre.ethers.getContractFactory('MyToken');
+    const fractionalNFTcontract = await MyToken.deploy();
+    const Mytokencontract = await  MyNFT.deploy();
     await fractionalNFTcontract.deployed();
-
-    const Mytoken = await hre.ethers.getContractFactory('Mytoken');
-    const Mytokencontract = await Mytoken.deploy();
     await Mytokencontract.deployed();
 
-    console.log("Contract  for fractional token deployed to:", fractionalNFTcontract.address);
-    console.log("ERC 721 token deployed to:", Mytokencontract.address);
+    console.log("ERC 721 token deployed to:", fractionalNFTcontract.address);
+    console.log("Contract  for fractional token deployed to", Mytokencontract.address);
 
 }
 
