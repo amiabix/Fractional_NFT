@@ -11,19 +11,20 @@ import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 contract MyToken is ERC20, Ownable, ERC20Permit,ERC721Holder {
     IERC721 public collection;
     uint256 public tokenid;
-    bool public initialized = false;
+    bool public initializedvar = false;
     bool public forsale= false;
     bool public canRedeem = false;
     uint256 public salePrice;
 
     constructor() ERC20("MyToken", "MTK") ERC20Permit("MyToken") {}
+
         function initialize(address _collection, uint256 _tokenId, uint256 _amount) external onlyOwner{
-            require(!initialized,"Already initialized");
+            require(!initializedvar,"Already initialized");
             require(_amount > 0);
             collection=IERC721(_collection);
             collection.safeTransferFrom(msg.sender, address(this),_tokenId);
             tokenid=_tokenId;
-            initialized=true;
+            initializedvar=true;
             _mint(msg.sender,_amount);
         }
     // function mint(address to, uint256 amount) public onlyOwner {
