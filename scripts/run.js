@@ -27,6 +27,8 @@ const main = async () => {
     await initialiseContract.wait();
 
     console.log("Initialised contract with address:", mint.address);
+
+    console.log("balance of the contract:", await fractionaltoken.balanceOf(fractionaltoken.address));
     
 }
 
