@@ -28,7 +28,9 @@ const main = async () => {
 
     console.log("Initialised contract with address:", mint.address);
 
-    console.log("balance of the contract:", await fractionaltoken.balanceOf(fractionaltoken.address));
+    // console.log("balance of the contract:", await fractionaltoken.balanceOf(fractionaltoken.address));
+    // console.log("balance of the contract:", await fractionaltoken.balanceOf(hre.ethers.utils.getAddress(hre.ethers.provider.getSigner().address)));
+    
     
 }
 
