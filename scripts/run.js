@@ -20,7 +20,7 @@ const main = async () => {
 
     // console.log("msg.sender:", hre.ethers.utils.getAddress(hre.ethers.provider.getSigner().address));
     
-        let Approval = await MyNFT.setApprovalForAll(fractionaltoken.address, true);
+        let Approval = await Mynft.setApprovalForAll(fractionaltoken.address, true);
         await Approval.wait();
 
     let initialiseContract = await fractionaltoken.initialize(Mynft.address,"1","100000000000");
