@@ -8,31 +8,29 @@ const main = async () => {
     await fractionaltoken.deployed();
     await Mynft.deployed();
 
-    
+    console.log("\n");
+
+    let owner_address= await fractionaltoken.owner();
+    console.log("owner address: " + owner_address);
+
     console.log("ERC 721 token deployed to:",Mynft.address );
     console.log("Contract  for fractional token deployed to", fractionaltoken.address);
 
     let mint = await Mynft.safeMint("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266","1");
     await mint.wait();
 
-    console.log("Minted token to address:", mint.address);
     console.log("\n");
-
-    // console.log("msg.sender:", hre.ethers.utils.getAddress(hre.ethers.provider.getSigner().address));
     
-        let Approval = await Mynft.setApprovalForAll(fractionaltoken.address, true);
-        await Approval.wait();
+    let Approval = await Mynft.setApprovalForAll(fractionaltoken.address, true);
+    await Approval.wait();
 
     let initialiseContract = await fractionaltoken.initialize(Mynft.address,"1","100000000000");
     await initialiseContract.wait();
-
-    console.log("Initialised contract with address:", mint.address);
-
-    console.log("balance of contract:", await fractionaltoken.balanceOf(fractionaltoken.address));
-
-    // console.log("balance of the contract:", await fractionaltoken.balanceOf(fractionaltoken.address));
-    // console.log("balance of the contract:", await fractionaltoken.balanceOf(hre.ethers.utils.getAddress(hre.ethers.provider.getSigner().address)));
     
+
+    let balance = await fractionaltoken.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
+    console.log("balance of 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266: " + balance);
+
     
 }
 
