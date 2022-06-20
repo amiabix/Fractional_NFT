@@ -27,10 +27,22 @@ const main = async () => {
     let initialiseContract = await fractionaltoken.initialize(Mynft.address,"1","100000000000");
     await initialiseContract.wait();
     
+    console.log("balance of 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266: " + await fractionaltoken.balanceOf(owner_address));
 
-    let balance = await fractionaltoken.balanceOf("0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266");
-    console.log("balance of 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266: " + balance);
+    let trasnfer = await fractionaltoken.transfer("0x70997970C51812dc3A010C7d01b50e0d17dc79C8","100000");
+    await trasnfer.wait();
 
+    let balance2 = await fractionaltoken.balanceOf("0x70997970C51812dc3A010C7d01b50e0d17dc79C8");
+
+    console.log("balance of 0x70997970C51812dc3A010C7d01b50e0d17dc79C8: " + balance2);
+
+    console.log("balance of 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266: " + await fractionaltoken.balanceOf(owner_address));
+
+    let forSale = await fractionaltoken.putForsale("100");
+    await forSale.wait();
+
+    let purchase = await fractionaltoken.purchase("0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC","100");
+    await purchase.wait();
     
 }
 
